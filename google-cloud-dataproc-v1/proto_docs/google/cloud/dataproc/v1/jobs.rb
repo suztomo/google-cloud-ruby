@@ -544,6 +544,51 @@ module Google
           end
         end
 
+        # A Dataproc job for running Apache Flink applications on YARN.
+        # @!attribute [rw] main_jar_file_uri
+        #   @return [::String]
+        #     The HCFS URI of the jar file that contains the main class.
+        # @!attribute [rw] main_class
+        #   @return [::String]
+        #     The name of the driver's main class. The jar file that contains the class
+        #     must be in the default CLASSPATH or specified in
+        #     {::Google::Cloud::Dataproc::V1::FlinkJob#jar_file_uris jarFileUris}.
+        # @!attribute [rw] args
+        #   @return [::Array<::String>]
+        #     Optional. The arguments to pass to the driver. Do not include arguments,
+        #     such as `--conf`, that can be set as job properties, since a collision
+        #     might occur that causes an incorrect job submission.
+        # @!attribute [rw] jar_file_uris
+        #   @return [::Array<::String>]
+        #     Optional. HCFS URIs of jar files to add to the CLASSPATHs of the
+        #     Flink driver and tasks.
+        # @!attribute [rw] savepoint_uri
+        #   @return [::String]
+        #     Optional. HCFS URI of the savepoint, which contains the last saved progress
+        #     for starting the current job.
+        # @!attribute [rw] properties
+        #   @return [::Google::Protobuf::Map{::String => ::String}]
+        #     Optional. A mapping of property names to values, used to configure Flink.
+        #     Properties that conflict with values set by the Dataproc API might be
+        #     overwritten. Can include properties set in
+        #      /etc/flink/conf/flink-defaults.conf and classes in user code.
+        # @!attribute [rw] logging_config
+        #   @return [::Google::Cloud::Dataproc::V1::LoggingConfig]
+        #     Optional. The runtime log config for job execution.
+        class FlinkJob
+          include ::Google::Protobuf::MessageExts
+          extend ::Google::Protobuf::MessageExts::ClassMethods
+
+          # @!attribute [rw] key
+          #   @return [::String]
+          # @!attribute [rw] value
+          #   @return [::String]
+          class PropertiesEntry
+            include ::Google::Protobuf::MessageExts
+            extend ::Google::Protobuf::MessageExts::ClassMethods
+          end
+        end
+
         # Dataproc job config.
         # @!attribute [rw] cluster_name
         #   @return [::String]
@@ -765,6 +810,9 @@ module Google
         # @!attribute [rw] trino_job
         #   @return [::Google::Cloud::Dataproc::V1::TrinoJob]
         #     Optional. Job is a Trino job.
+        # @!attribute [rw] flink_job
+        #   @return [::Google::Cloud::Dataproc::V1::FlinkJob]
+        #     Optional. Job is a Flink job.
         # @!attribute [r] status
         #   @return [::Google::Cloud::Dataproc::V1::JobStatus]
         #     Output only. The job status. Additional application-specific
@@ -1031,6 +1079,12 @@ module Google
         #     Optional. This token is included in the response if there are more results
         #     to fetch. To fetch additional results, provide this value as the
         #     `page_token` in a subsequent <code>ListJobsRequest</code>.
+        # @!attribute [r] unreachable
+        #   @return [::Array<::String>]
+        #     Output only. List of jobs with
+        #     [kms_key][google.cloud.dataproc.v1.EncryptionConfig.kms_key]-encrypted
+        #     parameters that could not be decrypted. A response to a `jobs.get` request
+        #     may indicate the reason for the decryption failure for a specific job.
         class ListJobsResponse
           include ::Google::Protobuf::MessageExts
           extend ::Google::Protobuf::MessageExts::ClassMethods
