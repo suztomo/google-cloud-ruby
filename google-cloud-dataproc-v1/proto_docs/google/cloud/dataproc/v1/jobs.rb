@@ -1082,7 +1082,7 @@ module Google
         # @!attribute [r] unreachable
         #   @return [::Array<::String>]
         #     Output only. List of jobs with
-        #     [kms_key][google.cloud.dataproc.v1.EncryptionConfig.kms_key]-encrypted
+        #     {::Google::Cloud::Dataproc::V1::EncryptionConfig#kms_key kms_key}-encrypted
         #     parameters that could not be decrypted. A response to a `jobs.get` request
         #     may indicate the reason for the decryption failure for a specific job.
         class ListJobsResponse
