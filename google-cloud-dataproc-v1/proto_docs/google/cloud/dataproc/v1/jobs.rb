@@ -24,7 +24,7 @@ module Google
         # The runtime logging config of the job.
         # @!attribute [rw] driver_log_levels
         #   @return [::Google::Protobuf::Map{::String => ::Google::Cloud::Dataproc::V1::LoggingConfig::Level}]
-        #     The per-package log levels for the driver. This may include
+        #     The per-package log levels for the driver. This can include
         #     "root" package name to configure rootLogger.
         #     Examples:
         #     - 'com.google = FATAL'
@@ -96,7 +96,7 @@ module Google
         #   @return [::Array<::String>]
         #     Optional. The arguments to pass to the driver. Do not
         #     include arguments, such as `-libjars` or `-Dfoo=bar`, that can be set as
-        #     job properties, since a collision may occur that causes an incorrect job
+        #     job properties, since a collision might occur that causes an incorrect job
         #     submission.
         # @!attribute [rw] jar_file_uris
         #   @return [::Array<::String>]
@@ -115,7 +115,7 @@ module Google
         # @!attribute [rw] properties
         #   @return [::Google::Protobuf::Map{::String => ::String}]
         #     Optional. A mapping of property names to values, used to configure Hadoop.
-        #     Properties that conflict with values set by the Dataproc API may be
+        #     Properties that conflict with values set by the Dataproc API might be
         #     overwritten. Can include properties set in `/etc/hadoop/conf/*-site` and
         #     classes in user code.
         # @!attribute [rw] logging_config
@@ -143,7 +143,8 @@ module Google
         # @!attribute [rw] main_class
         #   @return [::String]
         #     The name of the driver's main class. The jar file that contains the class
-        #     must be in the default CLASSPATH or specified in `jar_file_uris`.
+        #     must be in the default CLASSPATH or specified in
+        #     SparkJob.jar_file_uris.
         # @!attribute [rw] args
         #   @return [::Array<::String>]
         #     Optional. The arguments to pass to the driver. Do not include arguments,
@@ -165,7 +166,7 @@ module Google
         # @!attribute [rw] properties
         #   @return [::Google::Protobuf::Map{::String => ::String}]
         #     Optional. A mapping of property names to values, used to configure Spark.
-        #     Properties that conflict with values set by the Dataproc API may be
+        #     Properties that conflict with values set by the Dataproc API might be
         #     overwritten. Can include properties set in
         #     /etc/spark/conf/spark-defaults.conf and classes in user code.
         # @!attribute [rw] logging_config
@@ -218,7 +219,7 @@ module Google
         # @!attribute [rw] properties
         #   @return [::Google::Protobuf::Map{::String => ::String}]
         #     Optional. A mapping of property names to values, used to configure PySpark.
-        #     Properties that conflict with values set by the Dataproc API may be
+        #     Properties that conflict with values set by the Dataproc API might be
         #     overwritten. Can include properties set in
         #     /etc/spark/conf/spark-defaults.conf and classes in user code.
         # @!attribute [rw] logging_config
@@ -280,7 +281,7 @@ module Google
         # @!attribute [rw] properties
         #   @return [::Google::Protobuf::Map{::String => ::String}]
         #     Optional. A mapping of property names and values, used to configure Hive.
-        #     Properties that conflict with values set by the Dataproc API may be
+        #     Properties that conflict with values set by the Dataproc API might be
         #     overwritten. Can include properties set in `/etc/hadoop/conf/*-site.xml`,
         #     /etc/hive/conf/hive-site.xml, and classes in user code.
         # @!attribute [rw] jar_file_uris
@@ -327,7 +328,7 @@ module Google
         #   @return [::Google::Protobuf::Map{::String => ::String}]
         #     Optional. A mapping of property names to values, used to configure
         #     Spark SQL's SparkConf. Properties that conflict with values set by the
-        #     Dataproc API may be overwritten.
+        #     Dataproc API might be overwritten.
         # @!attribute [rw] jar_file_uris
         #   @return [::Array<::String>]
         #     Optional. HCFS URIs of jar files to be added to the Spark CLASSPATH.
@@ -377,7 +378,7 @@ module Google
         # @!attribute [rw] properties
         #   @return [::Google::Protobuf::Map{::String => ::String}]
         #     Optional. A mapping of property names to values, used to configure Pig.
-        #     Properties that conflict with values set by the Dataproc API may be
+        #     Properties that conflict with values set by the Dataproc API might be
         #     overwritten. Can include properties set in `/etc/hadoop/conf/*-site.xml`,
         #     /etc/pig/conf/pig.properties, and classes in user code.
         # @!attribute [rw] jar_file_uris
@@ -434,7 +435,7 @@ module Google
         # @!attribute [rw] properties
         #   @return [::Google::Protobuf::Map{::String => ::String}]
         #     Optional. A mapping of property names to values, used to configure SparkR.
-        #     Properties that conflict with values set by the Dataproc API may be
+        #     Properties that conflict with values set by the Dataproc API might be
         #     overwritten. Can include properties set in
         #     /etc/spark/conf/spark-defaults.conf and classes in user code.
         # @!attribute [rw] logging_config
@@ -571,7 +572,7 @@ module Google
         #     Optional. A mapping of property names to values, used to configure Flink.
         #     Properties that conflict with values set by the Dataproc API might be
         #     overwritten. Can include properties set in
-        #      /etc/flink/conf/flink-defaults.conf and classes in user code.
+        #     `/etc/flink/conf/flink-defaults.conf` and classes in user code.
         # @!attribute [rw] logging_config
         #   @return [::Google::Cloud::Dataproc::V1::LoggingConfig]
         #     Optional. The runtime log config for job execution.
@@ -622,7 +623,7 @@ module Google
         # @!attribute [r] details
         #   @return [::String]
         #     Optional. Output only. Job state details, such as an error
-        #     description if the state is <code>ERROR</code>.
+        #     description if the state is `ERROR`.
         # @!attribute [r] state_start_time
         #   @return [::Google::Protobuf::Timestamp]
         #     Output only. The time when this state was entered.
@@ -682,14 +683,14 @@ module Google
             # Applies to RUNNING state.
             SUBMITTED = 1
 
-            # The Job has been received and is awaiting execution (it may be waiting
+            # The Job has been received and is awaiting execution (it might be waiting
             # for a condition to be met). See the "details" field for the reason for
             # the delay.
             #
             # Applies to RUNNING state.
             QUEUED = 2
 
-            # The agent-reported status is out of date, which may be caused by a
+            # The agent-reported status is out of date, which can be caused by a
             # loss of communication between the agent and Dataproc. If the
             # agent does not send a timely update, the job will fail.
             #
@@ -816,7 +817,7 @@ module Google
         # @!attribute [r] status
         #   @return [::Google::Cloud::Dataproc::V1::JobStatus]
         #     Output only. The job status. Additional application-specific
-        #     status information may be contained in the <code>type_job</code>
+        #     status information might be contained in the <code>type_job</code>
         #     and <code>yarn_applications</code> fields.
         # @!attribute [r] status_history
         #   @return [::Array<::Google::Cloud::Dataproc::V1::JobStatus>]
@@ -826,7 +827,7 @@ module Google
         #     Output only. The collection of YARN applications spun up by this job.
         #
         #     **Beta** Feature: This report is available for testing purposes only. It
-        #     may be changed before final release.
+        #     might be changed before final release.
         # @!attribute [r] driver_output_resource_uri
         #   @return [::String]
         #     Output only. A URI pointing to the location of the stdout of the job's
@@ -834,14 +835,14 @@ module Google
         # @!attribute [r] driver_control_files_uri
         #   @return [::String]
         #     Output only. If present, the location of miscellaneous control files
-        #     which may be used as part of job setup and handling. If not present,
-        #     control files may be placed in the same location as `driver_output_uri`.
+        #     which can be used as part of job setup and handling. If not present,
+        #     control files might be placed in the same location as `driver_output_uri`.
         # @!attribute [rw] labels
         #   @return [::Google::Protobuf::Map{::String => ::String}]
         #     Optional. The labels to associate with this job.
         #     Label **keys** must contain 1 to 63 characters, and must conform to
         #     [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
-        #     Label **values** may be empty, but, if present, must contain 1 to 63
+        #     Label **values** can be empty, but, if present, must contain 1 to 63
         #     characters, and must conform to [RFC
         #     1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
         #     associated with a job.
@@ -852,7 +853,7 @@ module Google
         #   @return [::String]
         #     Output only. A UUID that uniquely identifies a job within the project
         #     over time. This is in contrast to a user-settable reference.job_id that
-        #     may be reused over time.
+        #     might be reused over time.
         # @!attribute [r] done
         #   @return [::Boolean]
         #     Output only. Indicates whether the job is completed. If the value is
@@ -891,12 +892,12 @@ module Google
         # Job scheduling options.
         # @!attribute [rw] max_failures_per_hour
         #   @return [::Integer]
-        #     Optional. Maximum number of times per hour a driver may be restarted as
+        #     Optional. Maximum number of times per hour a driver can be restarted as
         #     a result of driver exiting with non-zero code before job is
         #     reported failed.
         #
-        #     A job may be reported as thrashing if the driver exits with a non-zero code
-        #     four times within a 10-minute window.
+        #     A job might be reported as thrashing if the driver exits with a non-zero
+        #     code four times within a 10-minute window.
         #
         #     Maximum value is 10.
         #
@@ -905,7 +906,7 @@ module Google
         #     (https://cloud.google.com/dataproc/docs/concepts/workflows/using-workflows#adding_jobs_to_a_template).
         # @!attribute [rw] max_failures_total
         #   @return [::Integer]
-        #     Optional. Maximum total number of times a driver may be restarted as a
+        #     Optional. Maximum total number of times a driver can be restarted as a
         #     result of the driver exiting with a non-zero code. After the maximum number
         #     is reached, the job will be reported as failed.
         #
