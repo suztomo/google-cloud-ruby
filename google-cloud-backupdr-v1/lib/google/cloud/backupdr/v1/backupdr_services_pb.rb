@@ -55,35 +55,12 @@ module Google
             rpc :UpdateBackupVault, ::Google::Cloud::BackupDR::V1::UpdateBackupVaultRequest, ::Google::Longrunning::Operation
             # Deletes a BackupVault.
             rpc :DeleteBackupVault, ::Google::Cloud::BackupDR::V1::DeleteBackupVaultRequest, ::Google::Longrunning::Operation
-            # Returns the caller's permissions on a BackupVault resource.
-            #
-            # A caller is not required to have Google IAM permission to make this
-            # request.
-            rpc :TestIamPermissions, ::Google::Iam::V1::TestIamPermissionsRequest, ::Google::Iam::V1::TestIamPermissionsResponse
             # Lists DataSources in a given project and location.
             rpc :ListDataSources, ::Google::Cloud::BackupDR::V1::ListDataSourcesRequest, ::Google::Cloud::BackupDR::V1::ListDataSourcesResponse
             # Gets details of a DataSource.
             rpc :GetDataSource, ::Google::Cloud::BackupDR::V1::GetDataSourceRequest, ::Google::Cloud::BackupDR::V1::DataSource
             # Updates the settings of a DataSource.
             rpc :UpdateDataSource, ::Google::Cloud::BackupDR::V1::UpdateDataSourceRequest, ::Google::Longrunning::Operation
-            # Deletes a DataSource. This is a custom method instead of a standard delete
-            # method because external clients will not delete DataSources except for
-            # BackupDR backup appliances.
-            rpc :RemoveDataSource, ::Google::Cloud::BackupDR::V1::RemoveDataSourceRequest, ::Google::Longrunning::Operation
-            # Sets the internal status of a DataSource.
-            rpc :SetInternalStatus, ::Google::Cloud::BackupDR::V1::SetInternalStatusRequest, ::Google::Longrunning::Operation
-            # Internal only.
-            # Initiates a backup.
-            rpc :InitiateBackup, ::Google::Cloud::BackupDR::V1::InitiateBackupRequest, ::Google::Cloud::BackupDR::V1::InitiateBackupResponse
-            # Internal only.
-            # Abandons a backup.
-            rpc :AbandonBackup, ::Google::Cloud::BackupDR::V1::AbandonBackupRequest, ::Google::Longrunning::Operation
-            # Internal only.
-            # Finalize a backup that was started by a call to InitiateBackup.
-            rpc :FinalizeBackup, ::Google::Cloud::BackupDR::V1::FinalizeBackupRequest, ::Google::Longrunning::Operation
-            # Internal only.
-            # Fetch access token for a given data source.
-            rpc :FetchAccessToken, ::Google::Cloud::BackupDR::V1::FetchAccessTokenRequest, ::Google::Cloud::BackupDR::V1::FetchAccessTokenResponse
             # Lists Backups in a given project and location.
             rpc :ListBackups, ::Google::Cloud::BackupDR::V1::ListBackupsRequest, ::Google::Cloud::BackupDR::V1::ListBackupsResponse
             # Gets details of a Backup.

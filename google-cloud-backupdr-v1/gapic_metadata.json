@@ -60,11 +60,6 @@
                 "delete_backup_vault"
               ]
             },
-            "TestIamPermissions": {
-              "methods": [
-                "test_iam_permissions"
-              ]
-            },
             "ListDataSources": {
               "methods": [
                 "list_data_sources"
@@ -78,36 +73,6 @@
             "UpdateDataSource": {
               "methods": [
                 "update_data_source"
-              ]
-            },
-            "RemoveDataSource": {
-              "methods": [
-                "remove_data_source"
-              ]
-            },
-            "SetInternalStatus": {
-              "methods": [
-                "set_internal_status"
-              ]
-            },
-            "InitiateBackup": {
-              "methods": [
-                "initiate_backup"
-              ]
-            },
-            "AbandonBackup": {
-              "methods": [
-                "abandon_backup"
-              ]
-            },
-            "FinalizeBackup": {
-              "methods": [
-                "finalize_backup"
-              ]
-            },
-            "FetchAccessToken": {
-              "methods": [
-                "fetch_access_token"
               ]
             },
             "ListBackups": {
