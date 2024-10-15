@@ -692,6 +692,10 @@ module Google
 
         # Instance flexibility Policy allowing a mixture of VM shapes and provisioning
         # models.
+        # @!attribute [rw] provisioning_model_mix
+        #   @return [::Google::Cloud::Dataproc::V1::InstanceFlexibilityPolicy::ProvisioningModelMix]
+        #     Optional. Defines how the Group selects the provisioning model to ensure
+        #     required reliability.
         # @!attribute [rw] instance_selection_list
         #   @return [::Array<::Google::Cloud::Dataproc::V1::InstanceFlexibilityPolicy::InstanceSelection>]
         #     Optional. List of instance selection options that the group will use when
@@ -702,6 +706,31 @@ module Google
         class InstanceFlexibilityPolicy
           include ::Google::Protobuf::MessageExts
           extend ::Google::Protobuf::MessageExts::ClassMethods
+
+          # Defines how Dataproc should create VMs with a mixture of provisioning
+          # models.
+          # @!attribute [rw] standard_capacity_base
+          #   @return [::Integer]
+          #     Optional. The base capacity that will always use Standard VMs to avoid
+          #     risk of more preemption than the minimum capacity you need. Dataproc will
+          #     create only standard VMs until it reaches standard_capacity_base, then it
+          #     will start using standard_capacity_percent_above_base to mix Spot with
+          #     Standard VMs. eg. If 15 instances are requested and
+          #     standard_capacity_base is 5, Dataproc will create 5 standard VMs and then
+          #     start mixing spot and standard VMs for remaining 10 instances.
+          # @!attribute [rw] standard_capacity_percent_above_base
+          #   @return [::Integer]
+          #     Optional. The percentage of target capacity that should use Standard VM.
+          #     The remaining percentage will use Spot VMs. The percentage applies only
+          #     to the capacity above standard_capacity_base. eg. If 15 instances are
+          #     requested and standard_capacity_base is 5 and
+          #     standard_capacity_percent_above_base is 30, Dataproc will create 5
+          #     standard VMs and then start mixing spot and standard VMs for remaining 10
+          #     instances. The mix will be 30% standard and 70% spot.
+          class ProvisioningModelMix
+            include ::Google::Protobuf::MessageExts
+            extend ::Google::Protobuf::MessageExts::ClassMethods
+          end
 
           # Defines machines types and a rank to which the machines types belong.
           # @!attribute [rw] machine_types
@@ -791,6 +820,17 @@ module Google
         #     "nvme" (Non-Volatile Memory Express).
         #     See [local SSD
         #     performance](https://cloud.google.com/compute/docs/disks/local-ssd#performance).
+        # @!attribute [rw] boot_disk_provisioned_iops
+        #   @return [::Integer]
+        #     Optional. Indicates how many IOPS to provision for the disk. This sets the
+        #     number of I/O operations per second that the disk can handle. Note: This
+        #     field is only supported if boot_disk_type is hyperdisk-balanced.
+        # @!attribute [rw] boot_disk_provisioned_throughput
+        #   @return [::Integer]
+        #     Optional. Indicates how much throughput to provision for the disk. This
+        #     sets the number of throughput mb per second that the disk can handle.
+        #     Values must be greater than or equal to 1. Note: This field is only
+        #     supported if boot_disk_type is hyperdisk-balanced.
         class DiskConfig
           include ::Google::Protobuf::MessageExts
           extend ::Google::Protobuf::MessageExts::ClassMethods
